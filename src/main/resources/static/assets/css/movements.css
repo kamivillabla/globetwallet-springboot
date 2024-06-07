@@ -1,0 +1,78 @@
+.history-transactions {
+  width: 60%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: var(--box-shadow-primary);
+}
+
+.history-transactions__title {
+  margin-bottom: 20px;
+}
+
+.history-transactions__item {
+  background-color: whitesmoke;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.history-transactions__item-content {
+  flex-grow: 1;
+}
+
+.history-transactions__item-name {
+  flex: 2;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.history-transactions__item-date {
+  flex: 3;
+  color: #666666;
+}
+
+.history-transactions__item-amount {
+  flex: 2;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.history-transactions__item-status {
+  flex: 1;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 15px;
+  text-align: center;
+}
+
+.history-transactions__item-status.abono {
+  background-color: #d1e7dd;
+}
+.history-transactions__item-status.cargo {
+  background-color: #9281cc67;
+}
+.status-abono {
+  color: green;
+}
+.status-cargo {
+  color: red;
+}
+
+.status-icon {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  .history-transactions {
+    width: 90%;
+  }
+  .status-text {
+    display: none;
+  }
+
+  .status-icon {
+    display: inline;
+  }
+}

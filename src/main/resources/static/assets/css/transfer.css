@@ -1,0 +1,95 @@
+.container-transfer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.transfer {
+  width: 40%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 35px;
+  box-shadow: var(--box-shadow-primary);
+  justify-content: center;
+  height: 600px;
+}
+
+.transfer input,
+.transfer textarea,
+.transfer select  {
+  width: 100%;
+  border: none;
+  padding: 12px 10px 12px 20px;
+  border: 1px solid var(--color-primary);
+  box-sizing: border-box;
+}
+
+.transfer input::placeholder {
+  color: grey;
+}
+
+.transfer input:focus {
+  box-shadow: 0 0 0 0.2rem #6a5f9994;
+  color: rgb(44, 44, 44);
+}
+.transfer textarea:focus {
+  box-shadow: 0 0 0 0.2rem #6a5f9994;
+  color: rgb(44, 44, 44);
+}
+
+
+.container-transfer button{
+  width: 72%;
+  background: var(--color-primary);
+  padding: 10px;
+  color: white;
+  transition: transform 0.3s ease;
+  font-size: 18px;
+}
+.container-transfer button:hover {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
+
+.alert_container {
+  transform: translateX(-29%);
+  z-index: 2000;
+  -webkit-transform: translateX(-29%);
+  -moz-transform: translateX(-29%);
+  -ms-transform: translateX(-29%);
+  -o-transform: translateX(-29%);
+}
+@media screen and (max-width: 1024px) {
+  .transfer {
+    width: 90%;
+    height: 590px;
+    justify-content: end;
+    margin-top: 41px;
+  }
+
+  .container-transfer {
+    width: 100%;
+  }
+
+  .transfer label,
+  .transfer input,
+  .transfer div {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main--margin-top {
+    margin-top: 134px;
+  }
+  .transfer {
+    margin-top: 20px;
+  }
+
+}

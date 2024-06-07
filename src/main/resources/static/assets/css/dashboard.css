@@ -1,0 +1,331 @@
+/* card */
+.my-card, .last-transactions {
+	width: 80%;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px;
+	max-height: 280px;
+	margin-top: 20px;
+	box-shadow: var(--box-shadow-primary);
+}
+
+.my-card {
+	position: relative;
+}
+
+.my-card .btn-modal {
+	background: var(--color-primary);
+	padding: 10px;
+	color: white;
+	transition: transform 0.3s ease;
+	font-size: 18px;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	-ms-border-radius: 50%;
+	-o-border-radius: 50%;
+	position: absolute;
+	right: 15px;
+	bottom: 13px;
+}
+
+.my-card .btn-add-account {
+	width: 100%;
+	background: var(--color-primary);
+	padding: 10px;
+	color: white;
+	transition: transform 0.3s ease;
+	font-size: 18px;
+}
+
+.my-card .btn-modal:hover, .my-card .btn-add-account:hover {
+	background: transparent;
+	border: 1px solid var(--color-primary);
+	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	-o-transform: scale(1.05);
+	color: black;
+}
+
+.my-card-multiply {
+	display: flex;
+	gap: 15px;
+	overflow-x: auto;
+	width: 98%;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	cursor: grab;
+}
+
+.my-card-multiply::-webkit-scrollbar {
+	display: none;
+}
+
+.credit-card_convertBalance {
+	display: inline;
+	position: absolute;
+	right: 14px;
+}
+
+.credit-card_convertBalance button {
+	color: white;
+}
+
+.credit-card_convertBalance button:hover {
+	color: white;
+	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	-o-transform: scale(1.05);
+}
+
+.my-card-multiply:active {
+	cursor: grabbing;
+}
+
+.modal-content {
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+	border-bottom: 1px solid #eee;
+}
+
+.modal-footer {
+	border-top: 1px solid #eee;
+}
+
+.modal-content input, .modal-content select {
+	width: 100%;
+	border: none;
+	padding: 12px 10px 12px 20px;
+	border: 1px solid var(--color-primary);
+	box-sizing: border-box;
+}
+
+.modal-content input:placeholder {
+	color: grey;
+}
+
+.modal-content input:focus, .modal-content select:focus {
+	box-shadow: 0 0 0 0.2rem #6a5f9994;
+	color: rgb(44, 44, 44);
+}
+
+.my-card__credit-card {
+	width: 350px;
+	height: 200px;
+	background-image: linear-gradient(145deg, #826ab4, #a58dd8);
+	border-radius: 20px;
+	color: white;
+	padding: 20px 30px;
+	box-shadow: var(--box-shadow-primary);
+	font-family: 'Arial', sans-serif;
+	position: relative;
+	flex-shrink: 0;
+}
+
+.credit-card__balance {
+	font-size: 28px;
+	margin-bottom: 20px;
+}
+
+.credit-card__info {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	font-size: 16px;
+}
+
+.credit-card__holder {
+	margin-top: 26px;
+}
+
+.credit-card__holder span, .credit-card__expires span {
+	display: block;
+	font-size: 12px;
+	opacity: 0.7;
+}
+
+/* link-pages */
+.link-pages {
+	height: 200px;
+	gap: 50px;
+}
+
+.link-pages a {
+	padding: 26px;
+	background: #514777;
+	color: white;
+	width: 23%;
+	text-decoration: none;
+	transition: transform 0.3s ease;
+}
+
+.link-pages a:hover {
+	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	-o-transform: scale(1.05);
+}
+
+.link-pages a img {
+	width: 30px;
+}
+
+/* Last transaccion */
+.last-transactions__title {
+	margin-bottom: 20px;
+}
+
+.last-transactions__item {
+	background-color: whitesmoke;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.last-transactions__item-content {
+	flex-grow: 1;
+}
+
+.last-transactions__item-name {
+	flex: 2;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.last-transactions__item-date {
+	flex: 3;
+	font-size: 0.8em;
+	color: #666666;
+}
+
+.last-transactions__item-amount {
+	flex: 2;
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.last-transactions__item-status {
+	flex: 1;
+	padding: 5px 10px;
+	border-radius: 15px;
+	font-size: 0.75em;
+}
+
+.last-transactions__item-status.completed {
+	background-color: #d1e7dd;
+	color: #0f5132;
+}
+
+.last-transactions__item-status.abono {
+	background-color: #d1e7dd;
+}
+
+.last-transactions__item-status.cargo {
+	background-color: #9281cc67;
+}
+
+.status-abono {
+	color: green;
+}
+
+.status-cargo {
+	color: red;
+}
+
+.status-icon {
+	display: none;
+}
+/* data */
+.data {
+	width: 100%;
+}
+
+.data__inner {
+	margin-top: 20px;
+	padding: 20px;
+	box-shadow: var(--box-shadow-primary);
+}
+
+.data__inner-title {
+	font-weight: 500;
+	font-size: 17px;
+}
+
+.data__inner-money {
+	font-size: 30px;
+	font-weight: 500;
+	color: var(--color-primary);
+}
+
+.data__inner-percent {
+	background: #9281cc67;
+	padding: 5px 10px;
+	border-radius: 20px;
+}
+
+.data__inner-percent .bi-arrow-up {
+	color: rgba(0, 128, 0, 0.658);
+}
+
+.data__inner-percent .bi-arrow-down {
+	color: rgba(255, 0, 0, 0.603);
+}
+
+@media ( max-width : 1024px) {
+	/* card */
+	.container-menu {
+		margin-top: 53px;
+	}
+	.row .container-menu {
+		display: flex;
+		justify-content: center;
+	}
+	.my-card, .last-transactions {
+		width: 100%;
+		max-height: none;
+		height: max-content;
+	}
+	.credit-card__balance {
+		font-size: 23px;
+	}
+	.my-card__credit-card {
+		max-width: 300px;
+	}
+	/* Link pages */
+	.link-pages {
+		gap: 0;
+		justify-content: space-evenly;
+	}
+	.link-pages a img {
+		width: 20px;
+	}
+	.link-pages a {
+		width: 30%;
+		padding: 20px;
+	}
+
+	/*data */
+	.data {
+		width: 100%;
+	}
+
+	/* last transaccion */
+	.status-text {
+		display: none;
+	}
+	.status-icon {
+		display: inline;
+	}
+}

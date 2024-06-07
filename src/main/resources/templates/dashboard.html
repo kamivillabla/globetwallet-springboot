@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>dashboard - Globewallet </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/dashboard.css}" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row vh-100">
+            <header class="col-md-4 col-lg-2 d-md-block sidebar d-flex justify-content-center">
+                <input type="checkbox" id="nav-toggle" class="nav-toggle" /> <label for="nav-toggle" class="nav-toggle-label outside"> <i class="bi bi-list"></i> <i class="bi bi-x"></i> </label>
+                <nav class="position-sticky nav d-flex flex-column align-items-center" style="top: 0">
+                    <div class="nav__brand">KV</div>
+                    <hr class="nav__hr" />
+                    <ul class="d-flex flex-column gap-5 mt-4 nav__list">
+                        <li><a th:href="@{/dashboard}"> <img src="assets/icons/home.svg" alt="icons casa" class="me-3" /><span>Home</span></a></li>
+                        <li><a th:href="@{/deposit}"> <img src="assets/icons/depositar.svg" alt="Icons de depositar" class="me-3" /><span>Depósito - Retiro</span></a></li>
+                        <li><a th:href="@{/transfer}"> <img src="assets/icons/transferir.svg" alt="Icons transferir" class="me-3" /><span>Transferir</span></a></li>
+                        <li><a th:href="@{/movements}"> <img src="assets/icons/transacciones.svg" alt="Icons de transaccion" class="me-3" /><span>Movimientos</span></a></li>
+                        <li><a th:href="@{/logout}"> <img src="assets/icons/logout.svg" alt="Icono de logout" class="me-3" /><span>Logout</span></a></li>
+                    </ul>
+                </nav>
+            </header>
+            <main class="col-md-12 ms-md-auto col-lg-10 p-md-5">
+                <div class="container-fluid">
+                    <div id="alert-container" class="alert-container container" th:data-error="${errorMessage}"></div>
+                    <div class="row container-menu">
+                        <div class="col-md-9">
+                            <section class="my-card rounded-4">
+                                <h2>Mi tarjeta</h2>
+                                <div class="my-card-multiply">
+                                    <div th:each="account : ${accounts}" class="my-card__credit-card">
+                                        <form th:action="@{/accounts/convert}" method="post" class="credit-card_convertBalance">
+                                            <input type="hidden" name="accountId" th:value="${account.accountID}" />
+                                            <button type="submit" class="btn btn-convert" th:text="${account.currency.currencyName == 'CLP' ? 'Convertir a USD' : 'Convertir a CLP'}"></button>
+                                        </form>
+                                        <div class="credit-card__balance">
+                                            <span th:text="${account.currency.currencySymbol} + ' ' + ${account.formattedBalance}"></span>
+                                        </div>
+                                        <div class="credit-card__number" th:text="${account.accountNumber}"></div>
+                                        <div class="credit-card__info d-flex justify-content-between w-100">
+                                            <div class="credit-card__holder">
+                                                <span>Titular</span> <span th:text="${account.accountHolderName}"></span>
+                                            </div>
+                                            <div class="credit-card__expires">
+                                                <span>Expires</span> <span th:text="${account.expiryDate}"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-modal" data-bs-toggle="modal" data-bs-target="#addCardModal">+</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="addCardModal" tabindex="-1" aria-labelledby="addCardModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addCardModalLabel">Agregar Nueva Tarjeta</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form th:action="@{/accounts/add}" th:object="${account}" method="post">
+                                                    <div class="mb-3">
+                                                        <label for="accountType" class="form-label">Tipo de Cuenta</label> 
+                                                        <select class="form-select rounded-4" id="accountType" th:field="*{accountType}">
+                                                            <option th:each="type : ${accountTypes}" th:value="${type}" th:text="${type}"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="bankName" class="form-label">Nombre del Banco</label> 
+                                                        <input type="text" class="form-control rounded-4" id="bankName" th:field="*{bankName}" pattern="[A-Za-z ]+" title="Solo se permiten letras." required />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="accountNumber" class="form-label">Número de Cuenta</label> 
+                                                        <input type="number" class="form-control rounded-4" id="accountNumber" th:field="*{accountNumber}" required />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="expiryDate" class="form-label">Fecha de Expiración (MM/YY)</label> 
+                                                        <input type="text" class="form-control rounded-4" id="expiryDate" th:field="*{expiryDate}" pattern="(0[1-9]|1[0-2])\/([0-9]{2})" title="Formato de fecha debe ser MM/YY" required />
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label for="accountHolderName" class="form-label">Nombre del Titular</label> 
+                                                        <input type="text" class="form-control rounded-4" id="accountHolderName" th:field="*{accountHolderName}" pattern="[A-Za-z ]+" title="Solo se permiten letras." required />
+                                                    </div>
+                                                    <button type="submit" class="btn btn-add-account rounded-5">Agregar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="link-pages d-flex align-items-center">
+                                <a class="d-flex flex-column justify-content-center align-items-center gap-1 rounded-4" th:href="@{/deposit}"> <img src="assets/icons/depositar.svg" alt="Icons de depositar" /> <span>Depósito - Retiro</span> </a> 
+                                <a class="d-flex flex-column justify-content-center align-items-center gap-1 rounded-4" th:href="@{/transfer}"> <img src="assets/icons/transferir.svg" alt="Icons transferir" /> <span>Transferir</span> </a> 
+                                <a class="d-flex flex-column justify-content-center align-items-center gap-1 rounded-4" th:href="@{/movements}"> <img src="assets/icons/transacciones.svg" alt="Icons de transaccion" /> <span>Movimientos</span> </a>
+                            </section>
+                            <section class="last-transactions rounded-4">
+                                <h2>Últimas transacciones</h2>
+                                <div class="transactions-list">
+                                    <div th:if="${#lists.isEmpty(recentTransactions)}">
+                                        <p>No hay transacciones</p>
+                                    </div>
+                                    <div th:each="transaction : ${recentTransactions}" th:if="${!#lists.isEmpty(recentTransactions)}" class="last-transactions__item d-flex justify-content-between align-items-center rounded-4">
+                                        <span th:text="${transaction.transactionType == 'Abono' || transaction.transactionType == 'Cargo' ? transaction.transactionType : (transaction.receiverAccount != null ? transaction.receiverAccount.user.userName : 'N/A')}" class="last-transactions__item-name"></span> 
+                                        <span th:text="${#dates.format(transaction.transactionDate, 'dd/MM/yyyy')}" class="last-transactions__item-date"></span> 
+                                        <span th:text="${transaction.formattedAmount}" class="last-transactions__item-amount"></span> 
+                                        <span th:text="${transaction.senderAccount != null ? transaction.senderAccount.accountNumber : 'N/A'}" class="last-transactions__item-name"></span> 
+                                        <span th:text="${transaction.transactionType}" class="last-transactions__item-status" th:classappend="${transaction.transactionType == 'Abono'} ? 'abono' : 'cargo'"></span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script th:src="@{/assets/js/script.js}"></script>
+    <script th:src="@{/assets/js/dashboard.js}"></script>
+</body>
+</html>

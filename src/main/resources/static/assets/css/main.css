@@ -1,0 +1,176 @@
+@charset "UTF-8";
+
+:root {
+	--color-primary: #514777;
+	--color-image-secondary: linear-gradient(to right bottom, #8373bc, #8574bf, #8674c2, #8875c4,
+		#8a75c7);
+	--box-shadow-primary: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	background-color: whitesmoke;
+}
+
+main {
+	position: relative;
+}
+/* navbar compartido */
+.sidebar {
+	height: 100vh;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 300;
+	background: var(--color-primary);
+}
+
+.nav-toggle {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+}
+
+.nav-toggle-label, .nav-toggle {
+	display: none;
+}
+
+.nav-toggle-label .bi-list, .nav-toggle-label.toggled .bi-x {
+	display: none;
+}
+
+.nav-toggle-label.toggled .bi-list {
+	display: none;
+}
+
+.nav-toggle-label .bi-x {
+	display: none;
+}
+
+.nav-toggle-label.toggled .bi-x {
+	display: block;
+}
+
+.nav__brand {
+	text-align: center;
+	padding: 36px;
+	font-weight: bold;
+	font-style: italic;
+	color: white;
+	font-size: 27px;
+}
+
+.nav__hr {
+	width: 80%;
+	color: white;
+}
+
+.nav__list li {
+	list-style: none;
+}
+
+.nav__list li a {
+	text-decoration: none;
+	color: white;
+	transition: transform 0.3s ease;
+}
+
+.nav__list li:hover {
+	transform: scale(1.05);
+	-webkit-transform: scale(1.05);
+	-moz-transform: scale(1.05);
+	-ms-transform: scale(1.05);
+	-o-transform: scale(1.05);
+}
+
+.nav__list li a:hover {
+	color: #8574bf;
+}
+
+.nav__list li img {
+	width: 20px;
+}
+
+.nav-toggle-label:not(.toggled) .bi-list {
+	display: block;
+}
+
+/* alertas */
+.alert-container {
+	position: absolute;
+	top: 20px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: auto;
+	z-index: 1050;
+}
+
+.alert {
+	width: 100%;
+	max-width: 600px;
+}
+
+.alert-success {
+	background-color: #d4edda;
+	border-color: #c3e6cb;
+	color: #155724;
+}
+
+.alert-danger {
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	color: #721c24;
+}
+
+@media ( max-width : 1024px) {
+	.sidebar {
+		width: auto;
+	}
+
+}
+
+@media ( max-width : 1023px) {
+	.sidebar {
+		left: -100%;
+		transition: left 0.3s;
+	}
+	.sidebar.active {
+		left: 0;
+	}
+	.nav-toggle-label, .nav-toggle {
+		display: block;
+	}
+	.nav-toggle-label.outside {
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		z-index: 105;
+		cursor: pointer;
+		border-radius: 50%;
+		font-size: 25px;
+		padding: 5px;
+	}
+	.sidebar.active+.nav-toggle-label.outside {
+		left: var(--sidebar-width);
+	}
+	.nav__list li a {
+		font-size: 18px;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.alert-container {
+		top: 7px;
+		width: 100%;
+	}
+	.alert-container {
+		position: fixed;
+	}
+}

@@ -1,0 +1,149 @@
+.container-deposit {
+  position: relative;
+  margin-top: 180px;
+}
+.deposit {
+  width: 40%;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  padding-top: 60px;
+  box-shadow: var(--box-shadow-primary);
+  height: 397px;
+  justify-content: space-evenly;
+}
+
+.deposit .row {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+
+  width: 100%;
+}
+.deposit input,
+.deposit textarea,
+.deposit select {
+  width: 100%;
+  border: none;
+  padding: 12px 10px 12px 20px;
+  border: 1px solid var(--color-primary);
+  box-sizing: border-box;
+}
+
+.deposit input::placeholder {
+  color: grey;
+}
+
+.deposit input:focus {
+  box-shadow: 0 0 0 0.2rem #6a5f9994;
+  color: rgb(44, 44, 44);
+}
+.deposit textarea:focus {
+  box-shadow: 0 0 0 0.2rem #6a5f9994;
+  color: rgb(44, 44, 44);
+}
+
+.deposit .row {
+  text-align: left;
+}
+
+.deposit__money {
+  position: relative;
+}
+.deposit__money i {
+  position: absolute;
+  bottom: 10.5px;
+  left: 16px;
+  font-size: 18px;
+}
+.deposit__credit-card {
+  width: 350px;
+  height: 200px;
+  background-image: linear-gradient(145deg, #826ab4, #a58dd8);
+  border-radius: 20px;
+  color: white;
+  padding: 20px 30px;
+  box-shadow: var(--box-shadow-primary);
+  font-family: 'Arial', sans-serif;
+  position: absolute;
+  top: -133px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.deposit button {
+  width: 100%;
+  background: var(--color-primary);
+  padding: 10px;
+  color: white;
+  transition: transform 0.3s ease;
+  font-size: 18px;
+  margin: 0 auto;
+}
+.deposit button:hover {
+  background: transparent;
+  border: 1px solid var(--color-primary);
+  transform: scale(1.05);
+  -webkit-transform: scale(1.05);
+  -moz-transform: scale(1.05);
+  -ms-transform: scale(1.05);
+  -o-transform: scale(1.05);
+}
+.credit-card__logo {
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.credit-card__balance {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.credit-card__balance span {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.credit-card__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 16px;
+}
+
+.credit-card__holder {
+  margin-top: 26px;
+}
+
+.credit-card__holder span,
+.credit-card__expires span {
+  display: block;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 1024px) {
+  .deposit {
+    width: 90%;
+    height: 350px;
+    justify-content: space-evenly;
+    padding-top: 80px;
+  }
+
+  .deposit__credit-card {
+    width: 284px;
+    left: 50%;
+    top: -100px;
+    transform: translateX(-50%);
+  }
+
+  .container-deposit {
+    width: 100%;
+    margin-top: 160px;
+  }
+}
